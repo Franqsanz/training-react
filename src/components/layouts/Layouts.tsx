@@ -5,16 +5,16 @@ export function Layouts() {
   return (
     <>
       <header className='p-10 bg-gray-100'>
-        <nav>
-          <ul className='flex items-center gap-2'>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/food">food</Link>
-            </li>
-          </ul>
-        </nav>
+        <div className='flex justify-between'>
+          <Link to="/" className='text-lg font-bold'>Ecommerce GoodApps</Link>
+          <nav className=''>
+            <ul className='flex items-center gap-2'>
+              <li>
+                <Link to="/" className='hover:underline'>Home</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
       <Outlet />
       <footer className='p-20 bg-gray-500'></footer>

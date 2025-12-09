@@ -9,7 +9,15 @@ import { useAllProducts } from '../hooks/useAllProducts';
 
 export function Home() {
   // const products = use(productsPromise);
-  const { data } = useAllProducts();
+  const { data, isPending } = useAllProducts();
+
+  if (isPending) {
+    return (
+      <section className='h-[70vh] flex justify-center items-center'>
+        <Cover title='Cargando...' />
+      </section>
+    );
+  }
 
   return (
     <section className='flex flex-col justify-center items-center p-10'>
@@ -20,6 +28,7 @@ export function Home() {
             key={product.id}
             src={product.image}
             title={product.title}
+            href={`/${product.id}`}
           // pharagraph={product.description}
           />
         ))}

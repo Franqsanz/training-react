@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { href, Link } from 'react-router-dom';
 
 interface CardsProps {
   title: string;
   pharagraph?: string;
   src?: string;
+  href: string;
 }
 
-export function Cards({ src, title, pharagraph }: CardsProps) {
+export function Cards({ src, title, pharagraph, href }: CardsProps) {
   const [color, setColor] = useState<string>();
 
   function handleChangeColor(newColor: string) {
@@ -18,20 +20,20 @@ export function Cards({ src, title, pharagraph }: CardsProps) {
       <img src={src} alt={title} className='w-44 h-44 object-contain' />
       <h1 className='text-base/tight line-clamp-2 mt-3'>{title}</h1>
       <p>{pharagraph}</p>
-      {/* <div className='flex gap-3 absolute bottom-5'>
-        <button
+      <div className='flex gap-3 absolute bottom-5'>
+        {/* <button
           className='bg-red-400 p-2 rounded-md cursor-pointer'
           onClick={() => handleChangeColor('bg-white')}
         >
           Quitar
-        </button>
-        <button
-          className='bg-gray-200 p-2 rounded-md cursor-pointer'
-          onClick={() => handleChangeColor('bg-yellow-400')}
+        </button> */}
+        <Link
+          to={href}
+          className='bg-green-400 p-2 rounded-md cursor-pointer'
         >
-          Agregar Color
-        </button>
-      </div> */}
+          Ver producto
+        </Link>
+      </div>
     </div>
   )
 }

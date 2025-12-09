@@ -1,5 +1,5 @@
 export function Cover({ title }: { title: string }) {
   return (
-    <h1 className='text-6xl font-semibold'>{title}</h1>
+    <h1 className='text-5xl font-bold'>{title}</h1>
   )
 }
