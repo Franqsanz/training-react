@@ -1,7 +1,5 @@
-import React, { use } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { Cards } from '../components/ui/Cards'
 import { Cover } from '../components/ui/Cover'
 import { useProductsDetails } from '../hooks/useProductDetails';
 

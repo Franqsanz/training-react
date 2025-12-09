@@ -12,6 +12,9 @@ export function Layouts() {
               <li>
                 <Link to="/" className='hover:underline'>Home</Link>
               </li>
+              <li>
+                <Link to="/users" className='hover:underline'>Users</Link>
+              </li>
             </ul>
           </nav>
         </div>

@@ -1,13 +1,19 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, ScrollRestoration } from 'react-router-dom';
 
 import { Layouts } from './components/layouts/Layouts';
 import { Home } from './pages/Home';
+import { Users } from './pages/Users';
 import { ProductDetails } from './pages/ProductDetails';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layouts />,
+    element: (
+      <>
+        <ScrollRestoration />
+        <Layouts />
+      </>
+    ),
     children: [
       {
         index: true,
@@ -16,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: '/:id',
         element: <ProductDetails />
+      },
+      {
+        path: '/users',
+        element: <Users />
       }
     ]
   }

@@ -1,14 +1,15 @@
-// import { use } from 'react';
-
 import { Cards } from '../components/ui/Cards';
 import { Cover } from '../components/ui/Cover';
-// import { getAllProducts } from '../services';
 import { useAllProducts } from '../hooks/useAllProducts';
 
-// const productsPromise = getAllProducts();
+interface Product {
+  id: number;
+  title: string;
+  image: string;
+  description: string;
+}
 
 export function Home() {
-  // const products = use(productsPromise);
   const { data, isPending } = useAllProducts();
 
   if (isPending) {
@@ -23,13 +24,14 @@ export function Home() {
     <section className='flex flex-col justify-center items-center p-10'>
       <Cover title='Listado de Productos' />
       <div className='flex flex-wrap justify-center gap-5 mt-20'>
-        {data?.map((product: any) => (
+        {data?.map((product: Product) => (
           <Cards
             key={product.id}
+            id={product.id}
+            href={`/${product.id}`}
             src={product.image}
             title={product.title}
-            href={`/${product.id}`}
-          // pharagraph={product.description}
+            showBtn={true}
           />
         ))}
       </div>
