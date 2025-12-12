@@ -5,7 +5,7 @@ import { useProductsDetails } from '../hooks/useProductDetails';
 
 export function ProductDetails() {
   const { id } = useParams();
-  const { data, isPending } = useProductsDetails(id);
+  const { data, isPending } = useProductsDetails(Number(id));
 
   if (isPending) {
     return (
@@ -23,7 +23,7 @@ export function ProductDetails() {
         <section className='flex gap-7 mt-14'>
           <img src={data?.image} alt={data?.title} />
           <div className='flex flex-col gap-3'>
-            <span className='text-4xl font-semibold'>{data?.price}</span>
+            <span className='text-4xl font-semibold'>$ {data?.price}</span>
             <p>{data?.description}</p>
           </div>
         </section>

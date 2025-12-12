@@ -1,9 +1,10 @@
-import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
+import { Toaster } from 'sonner'
 
 export function Layouts() {
   return (
     <>
+      <Toaster position="top-right" richColors />
       <header className='p-10 bg-gray-100'>
         <div className='flex justify-between'>
           <Link to="/" className='text-lg font-bold'>Ecommerce GoodApps</Link>

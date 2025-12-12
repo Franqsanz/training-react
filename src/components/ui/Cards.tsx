@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 
 import { useDeleteProducts } from '../../hooks/useDeleteProducts';
-import { EditForm } from './EditForm';
 
 interface CardsProps {
   id: number;
@@ -15,19 +14,18 @@ interface CardsProps {
 }
 
 export function Cards({ id, src, title, pharagraph, href, showBtn = true, onEdit }: CardsProps) {
-  // const [open, setOpen] = useState(false);
-  // const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const { mutate, isPending, error, isSuccess } = useDeleteProducts();
+  const { mutate, isPending } = useDeleteProducts();
 
   function handleDelete(id: number) {
-    mutate(id);
+    mutate(id, {
+      onSuccess: () => {
+        toast.success('Producto eliminado')
+      },
+      onError: () => {
+        toast.error('Ocurrió un error al borrar')
+      },
+    });
   }
-
-  useEffect(() => {
-    if (isSuccess) {
-      alert('El producto ha sido borrado correctamente');
-    }
-  }, [isSuccess]);
 
   return (
     <>
@@ -35,11 +33,6 @@ export function Cards({ id, src, title, pharagraph, href, showBtn = true, onEdit
         <img src={src} alt={title} className='w-44 h-44 object-contain' />
         <h1 className='text-base/tight line-clamp-2 mt-3'>{title}</h1>
         <p>{pharagraph}</p>
-        {error && (
-          <p className='text-red-500 text-sm mt-2'>
-            Ocurrió un error al borrar
-          </p>
-        )}
         <div className='flex gap-3 absolute bottom-5'>
           {showBtn && (
             <button

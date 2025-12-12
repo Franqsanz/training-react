@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { toast } from 'sonner';
 
 import { useCreateProducts } from '../hooks/useCreateProducts';
 
@@ -17,8 +17,6 @@ const productSchema = z.object({
 type ProductFormData = z.infer<typeof productSchema>;
 
 export function Form() {
-  const [submitted, setSubmitted] = useState(false);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const { mutate, isPending } = useCreateProducts();
 
   const {
@@ -40,18 +38,16 @@ export function Form() {
   function onSubmit(body: ProductFormData) {
     mutate(body, {
       onSuccess: () => {
-        setSubmitted(true);
+        toast.success('Producto creado')
         reset();
       },
       onError: (error: any) => {
-        setSubmitted(false);
-
         const message =
           error?.response?.data?.message ||
           error?.message ||
           'Ocurrió un error al crear el producto';
 
-        setErrorMsg(message);
+        toast.error(message)
       },
     });
   };
@@ -153,16 +149,6 @@ export function Form() {
             >
               {isPending ? 'Guardando...' : 'Guardar Producto'}
             </button>
-            {submitted && (
-              <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-green-800 font-medium">✓ Formulario enviado exitosamente</p>
-              </div>
-            )}
-            {errorMsg && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-800 font-medium">⚠ {errorMsg}</p>
-              </div>
-            )}
           </form>
         </div>
       </div>

@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { toast } from 'sonner';
 
 import { useUpdateProduct } from '../../hooks/useUpdateProducts';
 
@@ -22,7 +23,6 @@ interface EditFormProps {
 }
 
 export function EditForm({ id, initialData, onClose }: EditFormProps) {
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const { mutate, isPending } = useUpdateProduct();
 
   const {
@@ -44,7 +44,7 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
       { id, body },
       {
         onSuccess: () => {
-          setErrorMsg(null);
+          toast.success('Producto actualizado')
           onClose(); // cerrar modal
         },
         onError: (error: any) => {
@@ -53,7 +53,7 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
             error?.message ||
             'Ocurrió un error al actualizar el producto';
 
-          setErrorMsg(message);
+          toast.error(message)
         },
       }
     );
@@ -121,11 +121,6 @@ export function EditForm({ id, initialData, onClose }: EditFormProps) {
       >
         {isPending ? 'Editando...' : 'Guardar cambios'}
       </button>
-      {errorMsg && (
-        <div className="bg-red-50 border border-red-300 text-red-700 p-3 rounded">
-          {errorMsg}
-        </div>
-      )}
     </form>
   );
 }
