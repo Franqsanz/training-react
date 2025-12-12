@@ -4,6 +4,7 @@ import { Layouts } from './components/layouts/Layouts';
 import { Home } from './pages/Home';
 import { Users } from './pages/Users';
 import { ProductDetails } from './pages/ProductDetails';
+import { Form } from './pages/Form';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: '/:id',
         element: <ProductDetails />
+      },
+      {
+        path: '/new-product',
+        element: <Form />
       },
       {
         path: '/users',
