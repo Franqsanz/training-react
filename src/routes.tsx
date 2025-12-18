@@ -5,6 +5,8 @@ import { Home } from './pages/Home';
 import { Users } from './pages/Users';
 import { ProductDetails } from './pages/ProductDetails';
 import { Form } from './pages/Form';
+import { Login } from './pages/Login';
+import { ProtectedRoute } from './components/ProtectedRoute';
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +20,15 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Login />
+      },
+      {
+        path: '/products',
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/:id',
@@ -31,7 +41,7 @@ export const router = createBrowserRouter([
       {
         path: '/users',
         element: <Users />
-      }
+      },
     ]
   }
 ])

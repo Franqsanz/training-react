@@ -18,7 +18,7 @@ export function Layouts() {
         <div className='flex justify-between'>
           <div>
             <Link to="/" className='text-lg font-bold'>Ecommerce GoodApps</Link>
-            <div className='flex flex-col mt-1'>
+            {/*<div className='flex flex-col mt-1'>
               <span>
                 Hola <span className='font-bold'>{userWithContext.username}</span>{' '}
                 desde CreateContext{' '}
@@ -27,12 +27,15 @@ export function Layouts() {
                 Hola <span className='font-bold'>{userWithZustand.username}</span>{' '}
                 desde Zustand
               </span>
-            </div>
+            </div>*/}
           </div>
           <nav className=''>
             <ul className='flex items-center gap-2'>
               <li>
-                <Link to="/" className='hover:underline'>Home</Link>
+                <Link to="/" className='hover:underline'>Login</Link>
+              </li>
+              <li>
+                <Link to="/products" className='hover:underline'>Productos</Link>
               </li>
               <li>
                 <Link to="/users" className='hover:underline'>Users</Link>
