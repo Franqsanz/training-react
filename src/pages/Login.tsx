@@ -35,8 +35,8 @@ export function Login() {
 
       localStorage.setItem("token", fakeResponse.token);
 
-      console.log("Token guardado:", fakeResponse.token);
       alert("Login exitoso");
+
       window.location.href = "/products";
     } catch (error) {
       console.error(error);

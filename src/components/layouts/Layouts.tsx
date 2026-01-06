@@ -29,7 +29,7 @@ export function Layouts() {
               </span>
             </div>*/}
           </div>
-          <nav className=''>
+          <nav>
             <ul className='flex items-center gap-2'>
               <li>
                 <Link to="/" className='hover:underline'>Login</Link>

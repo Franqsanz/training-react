@@ -1,3 +1,6 @@
+import { AdvancedMarker } from '@vis.gl/react-google-maps';
+import { Map } from "@google-maps/map";
+
 import { Cover } from '../components/ui/Cover';
 import { useAllUsers } from '../hooks/useAllUsers';
 
@@ -39,6 +42,20 @@ export function Users() {
             </div>
             <div className="mt-3 text-xs text-gray-400">
               Lat: {user.address.geolocation.lat} — Long: {user.address.geolocation.long}
+            </div>
+            <div className='w-full h-48'>
+              <Map
+                center={{
+                  lat: Number(user.address.geolocation.lat),
+                  lng: Number(user.address.geolocation.long),
+                }}
+              >
+                <AdvancedMarker
+                  position={{
+                    lat: Number(user.address.geolocation.lat),
+                    lng: Number(user.address.geolocation.long),
+                }} />
+              </Map>
             </div>
           </div>
         ))}
